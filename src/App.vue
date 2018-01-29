@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <text> home </text>
+    <router-view></router-view>
     <wxc-popup width="500"
                pos="left"
                ref="sidebar"
-               :show="true"
+               :show="isSidebarOpen"
                @wxcPopupOverlayClicked="overlayClicked">
 
       <wxc-cell label="首页"
@@ -38,6 +38,9 @@
   export default {
     components: { WxcButton, WxcPopup, WxcCell, WxcMinibar },
     computed: {
+      isSidebarOpen() {
+        return this.$store.state.isSidebarOpen
+      }
     },
     created() {
       let domModule = weex.requireModule('dom');
@@ -54,9 +57,11 @@
     },
     methods: {
       linkTo(path) {
+        this.$router.push(path)
         this.$refs.sidebar.hide()
       },
       overlayClicked () {
+        this.$store.dispatch('CLOSE_SIDEBAR')
       },
       wxcCellClicked() {
 

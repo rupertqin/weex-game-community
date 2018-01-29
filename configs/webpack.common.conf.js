@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const webpack = require('webpack');
-const webEntry = {};
+const webEntry = {entry: path.resolve('src', 'entry.js')};
 const weexEntry = {};
 const config = require('./config');
 const helper = require('./helper');
@@ -44,9 +44,10 @@ const getEntryFile = (dir) => {
     const fullpath = path.join(directory, file);
     const stat = fs.statSync(fullpath);
     const extname = path.extname(fullpath);
-    if (stat.isFile() && extname === '.vue') {
+    const basename = path.basename(fullpath);
+    if (stat.isFile() && /.vue$/.test(extname) && !/App.vue$/.test(basename)) {
       const name = path.join(dir, path.basename(file, extname));
-      if (extname === '.vue') {
+      if (basename === 'NONE.js') {
         const entryFile = path.join(vueWebTemp, dir, path.basename(file, extname) + '.js');
         fs.outputFileSync(path.join(entryFile), getEntryFileContent(entryFile, fullpath));
         webEntry[name] = path.join(entryFile) + '?entry=true';
@@ -79,6 +80,8 @@ const plugins = [
 ];
 
 // Config for compile jsbundle for web.
+
+console.log('============ ', webEntry)
 const webConfig = {
   entry: webEntry,
   output: {

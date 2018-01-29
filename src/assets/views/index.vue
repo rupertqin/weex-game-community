@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import weex from 'weex-vue-render';
   var navigator = weex.requireModule('navigator')
   var modal = weex.requireModule('modal')
   export default {

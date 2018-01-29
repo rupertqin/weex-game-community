@@ -9,7 +9,7 @@ const config = {
   pluginFilePath: 'plugins/plugins.js',
   // common
   templateDir: '.temp',
-  entryFilePath: './src/entry.js',
+  entryFilePath: './web/entry.js',
   dev: {
     // Various Dev Server settings
     contentBase: ROOT,
