@@ -1,20 +1,31 @@
 <template>
   <div class="wrapper">
     <image :src="logo" class="logo" @click="jump"></image>
-    <text class="greeting">The environment is ready!ss</text>
+    <text class="greeting">The environment is ready!</text>
     <text class="message">Now, let's use Vue.js to build your Weex app.</text>
   </div>
 </template>
 
 <script>
-  import weex from 'weex-vue-render';
+
+  console.log('weex:', weex)
+
   var navigator = weex.requireModule('navigator')
   var modal = weex.requireModule('modal')
+
+
   export default {
     data () {
       return {
         logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png',
       }
+    },
+    created() {
+
+      modal.toast({
+        message: 'I am a toast.',
+        duration: 3
+      })
     },
     methods: {
       jump (e) {

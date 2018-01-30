@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const webpack = require('webpack');
+// const webEntry = {};
 const webEntry = {entry: path.resolve('src', 'entry.js')};
 const weexEntry = {};
 const config = require('./config');
@@ -47,7 +48,8 @@ const getEntryFile = (dir) => {
     const basename = path.basename(fullpath);
     if (stat.isFile() && /.vue$/.test(extname) && !/App.vue$/.test(basename)) {
       const name = path.join(dir, path.basename(file, extname));
-      if (basename === 'NONE.js') {
+      // if (basename === 'index.vue') {
+      if (basename === 'NONE.file') {
         const entryFile = path.join(vueWebTemp, dir, path.basename(file, extname) + '.js');
         fs.outputFileSync(path.join(entryFile), getEntryFileContent(entryFile, fullpath));
         webEntry[name] = path.join(entryFile) + '?entry=true';
@@ -116,19 +118,30 @@ const webConfig = {
       test: /\.vue(\?[^?]+)?$/,
       use: [{
         loader: 'vue-loader',
-        options: Object.assign(vueLoaderConfig({useVue: true, usePostCSS: false}), {
-          /**
-           * important! should use postTransformNode to add $processStyle for
-           * inline style prefixing.
-           */
+        options: {
           optimizeSSR: false,
-          compilerModules: [{
-            postTransformNode: el => {
-              el.staticStyle = `$processStyle(${el.staticStyle})`
-              el.styleBinding = `$processStyle(${el.styleBinding})`
+          postcss: [
+            // to convert weex exclusive styles.
+            require('postcss-plugin-weex')(),
+            require('autoprefixer')({
+              browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
+            }),
+            require('postcss-plugin-px2rem')({
+              // base on 750px standard.
+              rootValue: 75,
+              // to leave 1px alone.
+              minPixelValue: 1.01
+            })
+          ],
+          compilerModules: [
+            {
+              postTransformNode: el => {
+                // to convert vnode for weex components.
+                require('weex-vue-precompiler')()(el)
+              }
             }
-          }]
-        })
+          ]
+        }
       }]
     },
     {

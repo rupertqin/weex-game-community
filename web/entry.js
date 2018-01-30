@@ -1,6 +1,6 @@
-import Vue from 'vue';
+// import Vue from 'vue';
 
-import weex from 'weex-vue-render';
+// import weex from 'weex-vue-render';
 
 // import render-core.
 // import weex from 'weex-vue-render/dist/index.core';
@@ -16,4 +16,5 @@ import weex from 'weex-vue-render';
 
 // feihua
 
-weex.init(Vue);
+// weex.init(Vue);
+

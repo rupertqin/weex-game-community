@@ -102,10 +102,10 @@
 </style>
 
 <script>
-  import weex from 'weex-vue-render';
   import { WxcButton, WxcPopup, WxcMinibar } from 'weex-ui'
 
   const modal = weex.requireModule('modal')
+  console.log('modal: ', modal)
 
 
 
