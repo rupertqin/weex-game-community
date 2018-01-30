@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Router from 'vue-router'
 import ViewHome from './assets/views/home.vue'
 import ViewNews from './assets/views/news.vue'

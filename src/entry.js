@@ -9,4 +9,4 @@ import mixins from './mixins'
 Vue.mixin(mixins)
 
 new Vue(Vue.util.extend({ el: '#root', router, store }, App))
-router.push('/404')
+router.push('/news')

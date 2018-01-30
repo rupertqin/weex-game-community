@@ -12308,9 +12308,9 @@
             "dev": true
         },
         "vue": {
-            "version": "2.5.11",
-            "resolved": "https://registry.npmjs.org/vue/-/vue-2.5.11.tgz",
-            "integrity": "sha512-FZzUIvJa1jsFSfy6OITgjzoCtnxI8uHkewa2QCCCIgRj7ObsalXKLTf3S5sBP+kyusTctl3fKej+NHoBUCVPlA=="
+            "version": "2.5.13",
+            "resolved": "http://registry.npm.taobao.org/vue/download/vue-2.5.13.tgz",
+            "integrity": "sha1-lb0x4g7896fzkjnJqmeHzoz1eOE="
         },
         "vue-hot-reload-api": {
             "version": "2.2.4",
@@ -12368,9 +12368,9 @@
             }
         },
         "vue-template-compiler": {
-            "version": "2.5.11",
-            "resolved": "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.5.11.tgz",
-            "integrity": "sha512-tlEyfeK1TkoO/+w7QIYP1fjYEuJSf60XchxYH3gUSYKeW4blPqM2BtA29y50fU6Tjm9eLUgUy8qGMA2euOr4Qw==",
+            "version": "2.5.13",
+            "resolved": "http://registry.npm.taobao.org/vue-template-compiler/download/vue-template-compiler-2.5.13.tgz",
+            "integrity": "sha1-EqKqDs1hWKxeXxTSlLCZPzmcPTg=",
             "dev": true,
             "requires": {
                 "de-indent": "1.0.2",
@@ -13054,7 +13054,7 @@
                 "sugarss": "0.1.6",
                 "vue-hot-reload-api": "2.2.4",
                 "vue-style-loader": "3.0.3",
-                "vue-template-compiler": "2.5.11",
+                "vue-template-compiler": "2.5.13",
                 "vue-template-es2015-compiler": "1.6.0",
                 "weex-styler": "0.3.0",
                 "weex-template-compiler": "2.5.11-weex.2"
@@ -13273,6 +13273,16 @@
                     "dev": true,
                     "requires": {
                         "has-flag": "1.0.0"
+                    }
+                },
+                "vue-template-compiler": {
+                    "version": "2.5.13",
+                    "resolved": "http://registry.npm.taobao.org/vue-template-compiler/download/vue-template-compiler-2.5.13.tgz",
+                    "integrity": "sha1-EqKqDs1hWKxeXxTSlLCZPzmcPTg=",
+                    "dev": true,
+                    "requires": {
+                        "de-indent": "1.0.2",
+                        "he": "1.1.1"
                     }
                 },
                 "webpack-sources": {
