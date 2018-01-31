@@ -1,7 +1,7 @@
 <template>
   <div>
     <wxc-loading :show="false" type="default"></wxc-loading>
-    <wxc-minibar title="资讯"
+    <wxc-minibar title="资讯d"
                  background-color="rgb(25, 114, 217)"
                  text-color="#FFFFFF"
                  right-text="more"
@@ -105,6 +105,8 @@
 
 <script>
   import { WxcButton, WxcPopup, WxcMinibar, WxcLoading } from 'weex-ui'
+  import { fetchNewsList } from '../assets/fetch'
+  const storage = weex.requireModule('storage')
   const modal = weex.requireModule('modal')
   const stream = weex.requireModule('stream')
 
@@ -119,14 +121,11 @@
         { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
       ],
       page: 0,
+      news: [],
+      noMoreNews: false,
+      loading: true
     }),
     computed: {
-      news () {
-        return this.$store.state.newsList
-      },
-      loading () {
-        return this.$store.state.loading
-      }
     },
     created () {
       modal.toast({
@@ -134,27 +133,26 @@
           duration: 3
       })
 
-      this.$store.dispatch('RESET_NEWS_LIST')
       this.fetchData()
     },
     methods: {
       minibarLeftButtonClick () {
-        this.$store.dispatch('OPEN_SIDEBAR')
       },
       minibarRightButtonClick () {
-      },
-      buttonClicked () {
-        this.$store.dispatch('OPEN_SIDEBAR')
       },
       linkTo (path) {
         this.$router.push(path)
       },
       isActive () {
-
       },
       fetchData () {
-        if (this.$store.state.noMoreNews) return 
-        this.$store.dispatch('FETCH_NEWS_LIST', ++this.page)
+        if (this.noMoreNews) return
+        this.loading = true
+        fetchNewsList(++this.page).then(list => {
+          if (list.length < 10) this.noMoreNews = true
+          this.news = this.news.concat(list)
+          this.loading = false
+        }) 
       },
       onappear () {},
       ondisappear () {},

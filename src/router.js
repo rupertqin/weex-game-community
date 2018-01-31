@@ -1,9 +1,9 @@
 import Router from 'vue-router'
-import ViewHome from './assets/views/home.vue'
-import ViewNews from './assets/views/news.vue'
-import ViewNewsDetails from './assets/views/news_details.vue'
-import ViewMy from './assets/views/my.vue'
-import View404 from './assets/views/404.vue'
+import ViewHome from './pages/home.vue'
+import ViewNews from './pages/news.vue'
+import ViewNewsDetails from './pages/news_details.vue'
+import ViewMy from './pages/my.vue'
+import View404 from './pages/404.vue'
 
 Vue.use(Router)
 
